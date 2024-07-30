@@ -10,7 +10,7 @@ console.log("imagegrud from comp", imageGrid)
               <img
                 src={imagegrid?.imagegrid_image[0]?.url}
                 alt={imagegrid?.alttext_for_imagegrid_image}
-                className="collage-image"
+                className="collage-image imageGrid?.class_name"
               />
     ))
     }
