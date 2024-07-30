@@ -35,8 +35,8 @@ exports.handler = async (event, context) => {
         body: ''
       };
     } else {
-      const targetURL = "https://buildingsbt.stage.honeywell.com" + fullUrl;      
-      const cookieVal = "2391-token=" + token;
+      const targetURL = "https://qpublish-hbt.aws.aem.honeywell.com" + fullUrl;      
+      const cookieVal = "2651-token=" + token;
       let requestData ; 
       if (typeof body === 'string') {
         try {
