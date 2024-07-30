@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 const ImageBanner = ({imageBanner}) => {
 
@@ -7,6 +8,7 @@ const img1 = imageBanner?.imagebanner_image[0]?.url;
 const eyebrow = imageBanner?.eyebrow;
 const description = imageBanner?.description;
 const title = imageBanner?.title;
+const reference_link = imageBanner?.reference_link;
 //console.log("ImageBanner", img1);
 
   return (
@@ -25,7 +27,7 @@ const title = imageBanner?.title;
     <div id="div-5" dangerouslySetInnerHTML={{ __html: description }} />
 
     <div className="cta">
-      <a href="https://buildingsbt.stage.honeywell.com/us/en/ecommerce_old"> FIND OUT MORE </a>
+     {reference_link && <Link to={reference_link?.href}> {title} </Link>}
     </div>
   </div>
 </div>
