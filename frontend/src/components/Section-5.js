@@ -1,22 +1,29 @@
 import React from 'react';
+const ImageBanner = ({imageBanner}) => {
 
-const ImageBanner = () => {
+if(!imageBanner) return null;
+console.log("ImageBanner", imageBanner?.imagebanner_image[0]?.url);
+const img1 = imageBanner?.imagebanner_image[0]?.url;
+const eyebrow = imageBanner?.eyebrow;
+const description = imageBanner?.description;
+const title = imageBanner?.title;
+//console.log("ImageBanner", img1);
+
   return (
     <div className="ImageBanner" id="div-1">
   <div className="image-container" id="div-2">
     <div id="div-3">
       <div>
-        <div><img src="https://honeywell.scene7.com/is/image/honeywell/man-with-laptop-1424x950:small-stripe?wid=855&amp;hei=543&amp;dpr=off" alt="man with laptop" className="banner-image" /></div>
+      {img1 && <div><img src={img1}/></div>}
       </div>
     </div>
   </div>
 
   <div className="text-container" id="div-4">
-    <h2 id="h2-1">BUY DIRECT ONLINE</h2>
-    <h2 id="h2-2">Order and track online, any time.</h2>
-    <div id="div-5">
-      <p id="p-1">If you’re a U.S. Honeywell customer, now there’s a single source for reviewing product specs, placing orders and tracking shipments. Coming soon to Europe, Asia and the Middle East.</p>
-    </div>
+    { eyebrow && <h2 id="h2-1">{eyebrow}</h2>}
+    { title && <h2 id="h2-2">{title}</h2>}
+    <div id="div-5" dangerouslySetInnerHTML={{ __html: description }} />
+
     <div className="cta">
       <a href="https://buildingsbt.stage.honeywell.com/us/en/ecommerce_old"> FIND OUT MORE </a>
     </div>

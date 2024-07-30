@@ -1,32 +1,28 @@
 import React from "react";
 import "../utils/css/soldToDropdown.css";
-//import Testindrop from "./Testindrop";
 import Close from "../utils/icons/close.svg";
 
 function SoldToDrpdown({contactData,setSelectedAccount,setSoldToOpen}) {
 
-  //console.log("contactData under soldto",contactData)
-  //console.log("soldtoacoount data under soldto",contactData.soldToAccounts)
-  if(contactData === undefined) return null
+  if(constactData === undefined) return null;
 
   const soldToAccounts = contactData.soldToAccounts;
 
   const [selectedValue, setSelectedValue] = React.useState(null);
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
-    //setSelectedAccount(event.target.value);
+
     
   };
   const onCloseHandler = (e) => { 
     e.stopPropagation();
     setSoldToOpen(false);
-    //console.log("soldToOpen",setSoldToOpen)
+
    };
   const updateSoldToAccount = () => {  
     localStorage.setItem('selectedAccount', selectedValue);
     setSelectedAccount(selectedValue);
   }
-  //console.log("selectedValue",selectedValue)
   return (
     <div className="soldToCard">
        
@@ -74,99 +70,8 @@ function SoldToDrpdown({contactData,setSelectedAccount,setSoldToOpen}) {
             </tr>
           ))}
            
-
-
-          
-        {/*    <tr>
-              <td><input type="radio" name="account" /></td>
-            <td>4550</td>
-              <td>Building Technology Systems</td>
-              <td>Warrington</td>
-              <td>WA5 7TN</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>5612</td>
-              <td>Wessex Water Services Ltd</td>
-              <td>Bath</td>
-              <td>BA2 7WW</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>32468</td>
-              <td>Marlowe Fire & Security Ltd</td>
-              <td>London</td>
-              <td>SW1X 7HN</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>4550</td>
-              <td>Building Technology Systems</td>
-              <td>Warrington</td>
-              <td>WA5 7TN</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>5612</td>
-              <td>Wessex Water Services Ltd</td>
-              <td>Bath</td>
-              <td>BA2 7WW</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>32468</td>
-              <td>Marlowe Fire & Security Ltd</td>
-              <td>London</td>
-              <td>SW1X 7HN</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>4550</td>
-              <td>Building Technology Systems</td>
-              <td>Warrington</td>
-              <td>WA5 7TN</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>5612</td>
-              <td>Wessex Water Services Ltd</td>
-              <td>Bath</td>
-              <td>BA2 7WW</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>32468</td>
-              <td>Marlowe Fire & Security Ltd</td>
-              <td>London</td>
-              <td>SW1X 7HN</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>4550</td>
-              <td>Building Technology Systems</td>
-              <td>Warrington</td>
-              <td>WA5 7TN</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>5612</td>
-              <td>Wessex Water Services Ltd</td>
-              <td>Bath</td>
-              <td>BA2 7WW</td>
-            </tr>
-            <tr>
-              <td><input type="radio" name="account" /></td>
-              <td>32468</td>
-              <td>Marlowe Fire & Security Ltd</td>
-              <td>London</td>
-              <td>SW1X 7HN</td>
-            </tr>
-
-
-        */}
           </tbody>
         </table> 
-        {/*<Testindrop></Testindrop>*/}
       </div>
        
         <div className="button-container">
