@@ -4,7 +4,7 @@ import Close from "../utils/icons/close.svg";
 
 function SoldToDrpdown({contactData,setSelectedAccount,setSoldToOpen}) {
 
-  if(constactData === undefined) return null;
+  if(contactData === undefined) return null;
 
   const soldToAccounts = contactData.soldToAccounts;
 
