@@ -1,15 +1,18 @@
 import react from "react";
 import Pdp from "../components/Pdp";
+import  {getProductDetail} from '../utils/ApiList/axiosapi';
 
-import useGetPdpData from "../customHook/useGetPdpData";
+import usePdpApiCall from "../customHook/usePdpApiCall";
+
+//import useGetPdpData from "../customHook/useGetPdpData";
 
 const PdpPage = () => {
 
-    const { productDetails, error, loading } = useGetPdpData();
 
-    console.log("productDetailsfromPDp page",productDetails);
-    console.log("errorpdppage",error);
-    console.log("loadingpdppage",loading);
+    const data = usePdpApiCall(getProductDetail);
+
+    console.log("data from pdp page",data);
+    console.log("pdp page")
 
     return (
         <>

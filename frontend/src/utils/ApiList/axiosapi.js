@@ -1,4 +1,4 @@
-const baseurl = "http://localhost:8888";
+const baseurl = "";
 const contactApi =
   baseurl +
   "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239";
@@ -17,9 +17,6 @@ const productdetailApi = "https://dummyjson.com/c/c798-bc76-46d3-aa9e";
 const productpriceApi = "https://dummyjson.com/c/3874-ddca-4cd1-814b";
 const atpApi = "https://dummyjson.com/c/2726-894c-4fa5-ba7b";
 
-const clientId = "asm";
-const clientSecret = "1234";
-const grantType = "client_credentials";
 
 const tokenUrl =
   "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/authorizationserver/oauth/token  ";
@@ -27,6 +24,7 @@ const tokenUrl =
 const getProductDetail =
 baseurl +
 "/.netlify/functions/apis/productDetails/productDescription?productCode=BEAMHK";
+
 const getPriceDetail =
   "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell/productDetails/price?productCode=LENS-AC";
 const getAvailability =
@@ -42,9 +40,6 @@ export {
   productdetailApi,
   productpriceApi,
   atpApi,
-  clientId,
-  clientSecret,
-  grantType,
   tokenUrl,
   getProductDetail,
   getPriceDetail,
