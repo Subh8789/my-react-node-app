@@ -1,4 +1,6 @@
 
+import axios from 'axios';
+
 // Utility function to parse cookies
 const parseCookies = (cookieString) => {
   return cookieString
@@ -87,7 +89,8 @@ exports.handler = async (event, context) => {
         };
       }
     }
-  } else {
+  }
+  else {
     return {
       statusCode: 404,
       headers: {
