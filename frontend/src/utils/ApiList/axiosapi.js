@@ -1,4 +1,4 @@
-const baseurl = "";
+const baseurl = "http://localhost:8888";
 const contactApi =
   baseurl +
   "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239";
@@ -25,7 +25,8 @@ const tokenUrl =
   "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/authorizationserver/oauth/token  ";
 
 const getProductDetail =
-  "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell/productDetails/productDescription?productCode=BEAMHK";
+baseurl +
+"/.netlify/functions/apis/productDetails/productDescription?productCode=BEAMHK";
 const getPriceDetail =
   "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell/productDetails/price?productCode=LENS-AC";
 const getAvailability =

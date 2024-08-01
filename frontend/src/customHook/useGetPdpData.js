@@ -43,20 +43,3 @@ const useGetPdpData = () => {
 
 export default useGetPdpData;
 
-/*
-const ProductDetailsComponent = ({ productCode }) => {
-  const { productDetails, error, loading } = useProductDetails(productCode);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
-  return (
-    <div>
-      <h1>Product Details</h1>
-      <pre>{JSON.stringify(productDetails, null, 2)}</pre>
-    </div>
-  );
-};
-
-export default ProductDetailsComponent;
-*/
