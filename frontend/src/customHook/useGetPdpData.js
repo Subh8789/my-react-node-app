@@ -36,7 +36,7 @@ const useGetPdpData = () => {
      
     console.log("productDetails",productDetails);
     fetchProductDetails();
-  }, []);
+  }, [productDetails]);
 
   return { productDetails, error, loading };
 };
