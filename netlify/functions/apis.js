@@ -1,6 +1,3 @@
-
-
-
 // Utility function to parse cookies
 const parseCookies = (cookieString) => {
   return cookieString
@@ -13,11 +10,10 @@ const parseCookies = (cookieString) => {
     }, {});
 };
 
-
 const generateApigeeToken = async () => {
   const APIGEE_AUTH_URL = 'https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/authorizationserver/oauth/token';
-const CLIENT_ID = 'asm';
-const CLIENT_SECRET = '1234';
+  const CLIENT_ID = 'asm';
+  const CLIENT_SECRET = '1234';
   const response = await fetch(APIGEE_AUTH_URL, {
     method: 'POST',
     headers: {
@@ -29,20 +25,16 @@ const CLIENT_SECRET = '1234';
       'client_secret': CLIENT_SECRET
     })
   });
- 
+
   if (!response.ok) {
     throw new Error(`Failed to generate Apigee token: ${response.statusText}`);
   }
- 
+
   const data = await response.json();
   return data.access_token;
 };
- 
+
 exports.handler = async (event, context) => {
-  
-  
-  
-  console.log('Apigee token:', apigee_token);
   const { path, queryStringParameters, httpMethod, headers, body } = event;
   const basePath = '/.netlify/functions/apis'; // Adjust this based on your setup
   const apiPath = path.replace(basePath, '');
@@ -50,7 +42,7 @@ exports.handler = async (event, context) => {
   const fullUrl = `${apiPath}${queryString ? '?' + queryString : ''}`;
 
   // Get cookies from the headers
-  const cookies = event.headers.cookie ? parseCookies(event.headers.cookie) : {};
+  const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
   const token = cookies["2391-token"] || "default-token-value";
 
@@ -67,9 +59,9 @@ exports.handler = async (event, context) => {
         body: ''
       };
     } else {
-      const targetURL = "https://buildingsbt.stage.honeywell.com" + fullUrl;      
+      const targetURL = "https://buildingsbt.stage.honeywell.com" + fullUrl;
       const cookieVal = "2391-token=" + token;
-      let requestData; 
+      let requestData;
       if (typeof body === 'string') {
         try {
           requestData = JSON.parse(body);
@@ -89,7 +81,7 @@ exports.handler = async (event, context) => {
             'Authorization': "Bearer " + token,
             'Cookie': cookieVal
           },
-          json: JSON.stringify(requestData),
+          body: JSON.stringify(requestData)
         });
 
         if (!response.ok) {
@@ -118,16 +110,16 @@ exports.handler = async (event, context) => {
         };
       }
     }
-  }
-  else if (apiPath.includes("/productDetails/")) { // New API condition
-
-    const apigee_token = await generateApigeeToken();
-    // New API handling logic
-    const targetURL = `https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell${apiPath}${queryString ? '?' + queryString : ''}`;
-    
-    console.log('Target URL:getting url', targetURL,apigee_token);
-
+  } else if (apiPath.includes("/productDetails/")) {
     try {
+      // Ensure apigee_token is defined
+      const apigee_token = await generateApigeeToken();
+
+      // New API handling logic
+      const targetURL = `https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell${apiPath}${queryString ? '?' + queryString : ''}`;
+
+      console.log('Target URL:', targetURL, 'Apigee Token:', apigee_token);
+
       const response = await fetch(targetURL, {
         method: httpMethod,
         headers: {
@@ -170,4 +162,3 @@ exports.handler = async (event, context) => {
     };
   }
 };
-
