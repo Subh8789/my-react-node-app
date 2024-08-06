@@ -1,7 +1,7 @@
 import ContentStack from 'contentstack';
 import { useState, useEffect } from 'react';
 
-// Define Stack outside the component to prevent it from being recreated on every render
+//  Stack outside the component to prevent it from being recreated on every render
 const Stack = ContentStack.Stack(
   "blt8cf7fa06f3654267",
   "cs11432c464beca575ef07a998",

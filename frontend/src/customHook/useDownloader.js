@@ -8,7 +8,6 @@ export default async function useDownloader( _url, filename) {
   console.log("filename", filename);
      try {
         const response = await axios.get(
-        //  "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
         _url,
           {
             responseType: "blob", 

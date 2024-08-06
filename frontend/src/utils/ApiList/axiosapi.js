@@ -13,10 +13,6 @@ const userApi =
 const statusApi =
   baseurl + "/.netlify/functions/apis/pif/api/status/v1/get-status?appId=239";
 
-const productdetailApi = "https://dummyjson.com/c/c798-bc76-46d3-aa9e";
-const productpriceApi = "https://dummyjson.com/c/3874-ddca-4cd1-814b";
-const atpApi = "https://dummyjson.com/c/2726-894c-4fa5-ba7b";
-
 
 const tokenUrl =
   "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/authorizationserver/oauth/token  ";
@@ -39,9 +35,6 @@ export {
   refreshApi,
   userApi,
   statusApi,
-  productdetailApi,
-  productpriceApi,
-  atpApi,
   tokenUrl,
   getProductDetail,
   getPriceDetail,
