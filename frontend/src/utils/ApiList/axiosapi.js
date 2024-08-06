@@ -26,9 +26,11 @@ baseurl +
 "/.netlify/functions/apis/productDetails/productDescription?productCode=BEAMHK";
 
 const getPriceDetail =
-  "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell/productDetails/price?productCode=LENS-AC";
+baseurl +
+  "/.netlify/functions/apis/productDetails/price?productCode=BEAMHK";
 const getAvailability =
-  "https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell/productDetails/atp?productCode=NX1MPS";
+baseurl +
+  "/.netlify/functions/apis/productDetails/atp?productCode=BEAMHK";
 
 export {
   contactApi,

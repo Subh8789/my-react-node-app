@@ -1,6 +1,6 @@
 import react from "react";
 import Pdp from "../components/Pdp";
-import  {getProductDetail} from '../utils/ApiList/axiosapi';
+import  {getAvailability, getPriceDetail, getProductDetail} from '../utils/ApiList/axiosapi';
 
 import usePdpApiCall from "../customHook/usePdpApiCall";
 
@@ -9,14 +9,15 @@ import usePdpApiCall from "../customHook/usePdpApiCall";
 const PdpPage = () => {
 
 
-    const data = usePdpApiCall(getProductDetail);
+    const pdpData = usePdpApiCall(getProductDetail);
+    const priceData= usePdpApiCall(getPriceDetail);
+    const getAvail = usePdpApiCall(getAvailability);
 
-    console.log("data from pdp page",data);
-    console.log("pdp page")
+   console.log("data from pdppage",pdpData);
 
     return (
         <>
-            <Pdp />
+            <Pdp data = {pdpData} price ={priceData} avail = {getAvail}/>
         </>
     );
 };

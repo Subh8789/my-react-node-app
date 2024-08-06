@@ -110,7 +110,8 @@ exports.handler = async (event, context) => {
         };
       }
     }
-  } else if (apiPath.includes("/productDetails/")) {
+  } 
+  else if (apiPath.includes("/productDetails/")) {
     try {
       // Ensure apigee_token is defined
       const apigee_token = await generateApigeeToken();
@@ -152,7 +153,8 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
       };
     }
-  } else {
+  } 
+  else {
     return {
       statusCode: 404,
       headers: {

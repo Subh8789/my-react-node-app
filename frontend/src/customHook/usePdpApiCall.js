@@ -16,7 +16,7 @@ function usePdpApiCall(api) {
           }
           return prevData;
         });
-        console.log("pdpData", response.data);
+        //console.log("pdpData", response.data);
       } catch (error) {
         setError(error);
       }
