@@ -1,5 +1,3 @@
-import react, { useEffect ,useState} from "react";
-
 import axios from "axios";
 
 export default async function useDownloader( _url, filename) {
@@ -25,7 +23,7 @@ export default async function useDownloader( _url, filename) {
         tempLink.href = url;
         tempLink.setAttribute(
           "download",
-          `bill_${filename}_${date}.pdf`
+          `bill_${filename}.pdf`
             //"bill.pdf"
         ); // Set the desired filename for the downloaded file
 

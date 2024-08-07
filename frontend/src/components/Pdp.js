@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 import useDownloader from "../customHook/useDownloader";
 
-const Pdp = ({data,price,avail}) => {
+const Pdp = ({data,price,avail,product_no}) => {
   const [activeTab, setActiveTab] = useState("Overview");
   const [quantity, setQuantity] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,7 +20,7 @@ const Pdp = ({data,price,avail}) => {
   if (!data) return null;
   if(!price) return null;
   if(!avail) return null;
-
+  if (!product_no) return null;
 
   
 
@@ -120,7 +120,7 @@ const Pdp = ({data,price,avail}) => {
     <div className="BEAMHK-Product">
       <div className="top-beamhk">
         <div className="products-title-info">
-          <h1>BEAMHK</h1>
+          {product_no && <h1>{product_no}</h1>}
           <p>Heater Kit for Beam detector</p>
         </div>
 
@@ -291,8 +291,10 @@ const Pdp = ({data,price,avail}) => {
                         <Link
                           onClick={() =>
                             pdfDownload(
-                              resource.externalLink,
-                              resource.resourceName
+                             // resource.externalLink,
+                             // resource.resourceName
+                             "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
+                             "demo"
                             )
                           }
                           href={resource.externalLink}

@@ -18,14 +18,14 @@ const tokenUrl =
 
 const getProductDetail =
 baseurl +
-"/.netlify/functions/apis/productDetails/productDescription?productCode=BEAMHK";
+"/.netlify/functions/apis/productDetails/productDescription";
 
 const getPriceDetail =
 baseurl +
-  "/.netlify/functions/apis/productDetails/price?productCode=BEAMHK";
+  "/.netlify/functions/apis/productDetails/price";
 const getAvailability =
 baseurl +
-  "/.netlify/functions/apis/productDetails/atp?productCode=BEAMHK";
+  "/.netlify/functions/apis/productDetails/atp";
 
 export {
   contactApi,

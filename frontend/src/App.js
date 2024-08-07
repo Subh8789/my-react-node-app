@@ -8,6 +8,7 @@ import NotFound from './components/NotFound.js';
 import useApicall from './customHook/useApicall.js';
 //import Pdp from './components/Pdp.js';
 import PdpPage from './pages/PdpPage.js';
+import ProtectedRoute from './Route/ProtectedRoute.js';
 
 function App() {
 
@@ -20,8 +21,8 @@ function App() {
       <Route path='/' element={<Layout detailData={detailData} contactData={contactData} error={error}/>}>
         <Route index element={<Home/>}/>
         <Route path='search' element={<SearchPage/>}/>
-          <Route path='pdp' element={<PdpPage/>}/>
-          {/*<Route path='search/:pdpid' element={<Pdp/>}></Route>*/}
+         {/* <Route path='pdp' element={<PdpPage/>}/>*/}
+         <Route path="search/:product_no" element={<ProtectedRoute element={PdpPage} />} />
         <Route path='*' element={<NotFound error="404 page not found"/>}/>
       </Route>
     )

@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
 
-function usePdpApiCall(api) {
+function usePdpApiCall(api,product_no) {
   const [pdpData, setPdpData] = React.useState({});
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(api);
+        const response = await axios.get(`${api}?productCode=${product_no}`);
         setPdpData((prevData) => {
           // Only update state if the new data is different
           if (JSON.stringify(prevData) !== JSON.stringify(response.data)) {
