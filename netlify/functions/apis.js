@@ -44,7 +44,7 @@ exports.handler = async (event, context) => {
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "default-token-value";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICJjYWY3MTI5ZC1mYmFmLTQwYzgtYTliNy1lMzY5N2I4NmRmYmYiLAogICJzdWIiIDogIjJiYTExNzg4LTRhNTgtNGIwMy04YzFiLTZiMzM4YWRhNjNkZiIsCiAgImlhdCIgOiAxNzIzMDE1ODgwLAogICJleHAiIDogMTcyMzAxNzY4MAp9.D8FoIvp60CsJaXIAQhTlDolxpz8DmAiv_UINcM9AA2M2x915N9CNnEr0hDN5CY1tjpPn_K20EsJmPbeQ0hXXYxUDo7wroob09wunOpmY57T5FtWYeZJXk-NKeAnfLclEryJcdiaesfosdzpg07tdTh9-er_bNZzJjBSDJCxuxSoQWkmnf-AfFgs9ohzvr4m2LWUe9UISnRZyln1czK5AsGyukg7_aZXux1oKnUCxwholetaBCliEBT_PPq_Ocwgf6SxFJEyz7LeKOMwY0iALOn7tTKt9BqgDo3Q-YqYvLuCtuC4lKtP-eMf9Uq2UHgPchN2bDu2iUL-JbOxWZY05YA";
 
   if (apiPath.includes("/pif/")) {
     if (httpMethod === 'OPTIONS') {
@@ -61,28 +61,42 @@ exports.handler = async (event, context) => {
     } else {
       const targetURL = "https://buildingsbt.stage.honeywell.com" + fullUrl;
       const cookieVal = "2391-token=" + token;
-      let requestData;
-      if (typeof body === 'string') {
-        try {
-          requestData = JSON.parse(body);
-        } catch (error) {
-          console.error('Invalid JSON string:', body);
-          requestData = {};
+      let requestData = {};
+
+      if (httpMethod !== 'GET' && httpMethod !== 'HEAD' && body) {
+        if (typeof body === 'string') {
+          try {
+            requestData = JSON.parse(body);
+          } catch (error) {
+            console.error('Invalid JSON string:', body);
+          }
+        } else {
+          requestData = body;
         }
-      } else {
-        requestData = body || {};
       }
 
       try {
-        // Make an external API POST call
-        const response = await fetch(targetURL, {
+        let config_call =  {
           method: httpMethod,
           headers: {
             'Authorization': "Bearer " + token,
             'Cookie': cookieVal
           },
-          body: JSON.stringify(requestData)
-        });
+        } 
+
+        if (httpMethod !== 'GET') {
+           config_call =  {
+            method: httpMethod,
+            headers: {
+              'Authorization': "Bearer " + token,
+              'Cookie': cookieVal
+            },
+            body: JSON.stringify(requestData)
+          } 
+        }
+
+        console.log('Target URL:', targetURL,  'Config:', config_call)
+        const response = await fetch(targetURL, config_call);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -110,8 +124,7 @@ exports.handler = async (event, context) => {
         };
       }
     }
-  } 
-  else if (apiPath.includes("/productDetails/")) {
+  } else if (apiPath.includes("/productDetails/")) {
     try {
       // Ensure apigee_token is defined
       const apigee_token = await generateApigeeToken();
@@ -153,8 +166,7 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
       };
     }
-  } 
-  else {
+  } else {
     return {
       statusCode: 404,
       headers: {

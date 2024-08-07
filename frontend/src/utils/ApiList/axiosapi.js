@@ -1,7 +1,6 @@
 const baseurl = "";
 const contactApi =
-  baseurl +
-  "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239";
+  baseurl + "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239";
 const detailsApi =
   baseurl + "/.netlify/functions/apis/pif/api/session/details?appId=239";
 const toolsApi =
