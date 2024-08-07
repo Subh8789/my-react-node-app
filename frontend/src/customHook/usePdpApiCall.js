@@ -23,7 +23,7 @@ function usePdpApiCall(api,product_no) {
     };
 
     fetchData();
-  }, [api, pdpData]); // pdpData included to satisfy the linter
+  }, [api, product_no, pdpData]); // pdpData included to satisfy the linter
 
   return {
     pdpData,
