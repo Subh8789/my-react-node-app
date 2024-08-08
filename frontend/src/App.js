@@ -9,6 +9,7 @@ import useApicall from './customHook/useApicall.js';
 //import Pdp from './components/Pdp.js';
 import PdpPage from './pages/PdpPage.js';
 import ProtectedRoute from './Route/ProtectedRoute.js';
+import UserContext from './utils/contextdata/userContext.js';
 
 function App() {
 
@@ -30,8 +31,9 @@ function App() {
 
   return (
     <div className="App">
+      <UserContext.Provider value={{detailData, contactData, error}}>
       <RouterProvider router={router} />
-      
+      </UserContext.Provider>
     </div>
   );
 }

@@ -12,7 +12,7 @@ export default function useApicall() {
       try {
         const response = await axios.get(detailsApi);
         setDetailData(response.data); 
-        localStorage.setItem('Session_status', JSON.stringify(response.data.session_valid));
+        //localStorage.setItem('Session_status', JSON.stringify(response.data.session_valid));
       } catch (error) {
         setError(error);
       }

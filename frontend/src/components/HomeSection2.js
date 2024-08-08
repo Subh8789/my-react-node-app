@@ -9,6 +9,8 @@ export default function HomeSection2({section2Data}) {
     }
 
     const header = section2Data.header;
+    const cta_buttons = section2Data.cta_buttons;
+    console.log("cta_buttons",cta_buttons)
 
     return (
         <div className="homesection2">
@@ -22,9 +24,13 @@ export default function HomeSection2({section2Data}) {
                  </h5> / */}
            
             <div className="footer">
-                <button className="button-primary">Test</button>
-                <button className="button-primary">Test</button>
-                <button className="button-primary">Test</button>
+                {
+                    cta_buttons && cta_buttons.map((button, index) => {
+                        return (
+                            <button key={index} className="button-primary">{button?.button_link?.title}</button>
+                        )
+                    })
+                }
             </div>
             </div>
            

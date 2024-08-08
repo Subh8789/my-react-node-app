@@ -10,10 +10,18 @@ import SearchBar from './SearchBarW';
 
 import { Link } from 'react-router-dom';
 
+import { useContext } from 'react';
+import UserContext from '../utils/contextdata/userContext';
+
 const Header = ({detailData,contactData,error}) => {
  
   //console.log("detaildtaa under header",detailData.given_name,detailData.session_valid ) 
   //console.log("contactData under header",contactData) 
+
+  const userdata = useContext(UserContext);
+
+  if(!userdata)return null;
+  console.log("detaildtaa under header",userdata )
 
  const dropdownOpen1= false;
   
@@ -97,7 +105,7 @@ const Header = ({detailData,contactData,error}) => {
               <span>{!detailData.session_valid ? "Sign In" : detailData.given_name }</span>
                 </Link>     
               {dropdownOpen && (
-                <DropdownModel signedin={detailData.session_valid} username={detailData.given_name}/>
+                <DropdownModel signedin={detailData.session_valid} username={detailData.given_name} userdata={userdata?.detailData?.given_name}/>
               )}
             </li>
             <li><Link to="">Bulk Order</Link></li>

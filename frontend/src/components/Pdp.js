@@ -49,8 +49,13 @@ const Pdp = ({data,price,avail,product_no}) => {
 
 
   const pdfDownload = (_url, filename) => {
-    useDownloader(_url, filename);
+   // useDownloader(_url, filename);
     console.log("pdfdownload", _url);
+    const link = document.createElement('a');
+    link.href = _url;
+    link.target = '_blank';
+    link.download = filename // Optional: Sets the file name based on the URL
+    link.click();
   };
 
   const handleTabClick = (tab) => {
@@ -209,7 +214,7 @@ const Pdp = ({data,price,avail,product_no}) => {
             {activeTab === "Overview" && description && (
               <div className="product-overview">
                 <p className="product-desc-title">Product Description</p>
-                <p className="product-desc-info">{description}</p>
+                <p className="product-desc-info" dangerouslySetInnerHTML={{ __html: description }}  />
                 <p className="feats-and-benefits-title">Features & Ben*</p>
                 <div className="second-level">
                   <p>List Price</p>
@@ -297,7 +302,6 @@ const Pdp = ({data,price,avail,product_no}) => {
                              "demo"
                             )
                           }
-                          href={resource.externalLink}
                           className="download-link"
                         >
                           Download
