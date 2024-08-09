@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Home from '../pages/Home.js';
-export default function ProtectedRoute({ element : Component, ...rest }) {
+import Home from "../pages/Home";
 
-
-  
-  const isLoggedIn = localStorage.getItem("userLoggedIn");
+export default function ProtectedRoute({ element: Component, ...rest }) {
+  const isLoggedIn = localStorage.getItem("userLoggedIn") // Ensure proper boolean check
   const navigate = useNavigate();
 
-  return  isLoggedIn ? <Component {...rest} /> : <Home/>;
+  if (isLoggedIn === "false") {
+    return <Home/>;
+  }
 
-
+  return <Component {...rest} />;
 }

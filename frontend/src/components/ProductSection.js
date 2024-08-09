@@ -93,7 +93,7 @@ const ProductSection = () => {
               <p className='desc-3'>{product.description}</p>
               <div className='details-button'>
                 {/* <Link to={"/search/"+product.id} className='details-link'>Product Details</Link> */}
-                <Link to="" className='details-link'>Product Details</Link>
+                <Link to="/pdp" className='details-link'>Product Details</Link>
               </div>
             </div>
           </div>

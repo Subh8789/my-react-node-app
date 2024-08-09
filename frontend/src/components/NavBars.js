@@ -42,9 +42,9 @@ const Header = ({detailData,contactData,error}) => {
   console.log("signedin", signedIn)
 
   if(detailData.session_valid){
-    localStorage.setItem('userLoggedIn', true);
+    localStorage.setItem('userLoggedIn', "true");
   }else{
-    localStorage.setItem('userLoggedIn', false);
+    localStorage.setItem('userLoggedIn', "false");
   }
 
   // Toggle dropdown visibility
