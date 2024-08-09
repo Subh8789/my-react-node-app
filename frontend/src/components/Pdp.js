@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../utils/css/pdp.css";
+//import "../utils/css/pdp.css";
 import { Link } from "react-router-dom";
 
 const Pdp = ({ data}) => {
