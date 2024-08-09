@@ -1,28 +1,11 @@
 import React, { useState } from "react";
-//import "../utils/css/pdp.css";
 import { Link } from "react-router-dom";
 
-const Pdp = ({ data}) => {
+
+const Pdp = () => {
   const [activeTab, setActiveTab] = useState("Overview");
 
-  if (!data) return null;
-
-  console.log("data from pdpcomponent", data);
  
-  const specifications = data?.pdpData?.classifications;
-  const description = data?.pdpData?.description;
-  const resources = data?.pdpData?.media;
-  const productimg = data?.pdpData?.images;
-
-  const pdfDownload = (_url, filename) => {
-    console.log("pdfdownload", _url);
-    const link = document.createElement("a");
-    link.href = _url;
-    link.target = "_blank";
-    link.download = filename; // Optional: Sets the file name based on the URL
-    link.click();
-  };
-
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -71,19 +54,19 @@ const Pdp = ({ data}) => {
         </nav>
 
         <div className="product-content">
-          {activeTab === "Overview" && description && (
+          {activeTab === "Overview"  && (
             <>
               <div className="image-side">
-                {productimg && (
+               
                   <div className="images">
-                    <img src={productimg[1].url} className="beamhk-image-2" />
                     <img
-                      src={productimg[1].url}
-                      alt={productimg[1].altText}
+                      src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes"
+                      alt="BEAMHK Heating Kit"
                       className="beamhk-image-1"
                     />
+                    <img src= "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes "className="beamhk-image-2" />
                   </div>
-                )}
+              
               </div>
 
               <div className="product-overview-pdp">
@@ -92,15 +75,16 @@ const Pdp = ({ data}) => {
                     <button  onClick={() => handleTabClick("SKU")}>BUY ONLINE</button>
                     <button>FIND A PARTNER</button>
                 </div>
-                <p className="product-desc-info"
-                  dangerouslySetInnerHTML={{ __html: description }}
-                />
-               <b> Features & Benefits: </b>
+                <p className="product-desc-info">Heating kits for use to prevent condensation with the BEAM1224 conventional beam smoke detectors. 
+                They lessen the likelihood of condensation by maintaining the unit at a temperature that is slightly higher than the surrounding air.</p>
+               <b> Features & Benefits:</b>
+               <p>To prevent condensation on the optical surface</p>
+               
 
               </div>
             </>
           )}
-          {activeTab === "Specifications" && specifications && (
+          {activeTab === "Specifications" &&(
             <div className="product-specifications">
               <table className="resources-table">
               <tr className="resources-table-rows">
@@ -108,46 +92,46 @@ const Pdp = ({ data}) => {
                   <td className="resources-table-headers">DATE</td>
                   <td className="resources-table-headers">SIZE</td>
                 </tr>
-                {specifications.map((specification, index) => (
-                  <tr key={index} >
-                    <td>{specification.code}</td>
-                    <td>{specification.value}</td>
-                    <td>340.0kb</td>
+                  <tr>
+                    <td>BEAMHK Heating Kit-Installation Manual</td>
+                    <td>5/10/2023</td>
+                    <td>591.04 KB</td>
 
                   </tr>
-                ))}
+                  <tr  >
+                    <td>OSI-R-SS Datasheet</td>
+                    <td>4/2/2022</td>
+                    <td>258.57 KB</td>
+
+                  </tr>
               </table>
             </div>
           )}
-          {activeTab === "SKU" && resources && (
+          {activeTab === "SKU" && (
             <div className="product-resources">
               <table className="resources-table">
                 <tr className="resources-table-rows">
                   <td className="resources-table-headers">PART NUMBER</td>
+                  <td className="resources-table-headers">COMPARE</td>
                   <td className="resources-table-headers">DESCRIPTION</td>
                   <td className="resources-table-headers"></td>
                 </tr>
-                {resources.map((resource, index) => (
-                  <tr key={index}>
-                    <td>{resource.resourceName}</td>
+                  <tr>
+                    <td>BEAMHKR</td>
+                    <td><input type="checkbox" /></td>
                     <td>
-                      <Link
-                        onClick={() =>
-                          pdfDownload(
-                            // resource.externalLink,
-                            // resource.resourceName
-                            "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
-                            "demo"
-                          )
-                        }
-                        className="download-link"
-                      >
-                        Download
-                      </Link>
+                    Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected Beam Smoke Detectors
                     </td>
-                   <Link to="/pdp/pippage"><td>ORDER ONLINE</td></Link>
+                   <Link to={`/pdp/${"BEAMHKR"}`}><td>ORDER ONLINE</td></Link>
                   </tr>
-                ))}
+                  <tr>
+                    <td>BEAMHK</td>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                    Heater kit for Beam detector
+                    </td>
+                   <Link to={`/pdp/${"BEAMHK"}`}><td>ORDER ONLINE</td></Link>
+                  </tr>
               </table>
             </div>
           )}

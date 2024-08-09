@@ -21,9 +21,10 @@ function App() {
       <Route path='/' element={<Layout detailData={detailData} contactData={contactData} error={error}/>}>
         <Route index element={<Home/>}/>
         <Route path='search' element={<SearchPage/>}/>
-         <Route path='pdp' element={<PdpPage/>}/>
+        <Route path='pdp' element={<PdpPage/>}/>
+        <Route path="pdp/:product_no" element={<ProtectedRoute element={PipPage} />} />
          <Route path="search/:product_no" element={<ProtectedRoute element={PipPage} />} />
-         <Route path="pdp/pippage" element={<ProtectedRoute element={PipPage} />} />
+         
         <Route path='*' element={<NotFound error="404 page not found"/>}/>
       </Route>
     )

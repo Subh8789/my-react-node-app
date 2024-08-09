@@ -6,6 +6,7 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 100px;
   }
   
   .product-title {
@@ -79,6 +80,8 @@
     cursor: pointer;
     border: 1px solid rgb(0, 113, 179);
     margin-left: 10px; /* Add margin for spacing */
+    position: absolute;
+    bottom:-350px;
   }
   
   
