@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import useDownloader from "../customHook/useDownloader";
 
 const Pip = ({data,price,avail}) => {
+  
   const [activeTab, setActiveTab] = useState("Overview");
   const [quantity, setQuantity] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,7 +46,11 @@ const Pip = ({data,price,avail}) => {
   const date = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.availableDate;
   const color = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.color;
 
-
+  const authenticatedDownload = ()=>{
+    if(localStorage.getItem('userLoggedIn') === "true"){
+      
+    } 
+  }
 
   const pdfDownloadDummy = (_url, filename) => {
    // useDownloader(_url, filename);
@@ -56,6 +61,8 @@ const Pip = ({data,price,avail}) => {
     link.download = filename // Optional: Sets the file name based on the URL
     link.click();
   };
+
+  
   const pdfDownload = (_url, filename) => {
     // useDownloader(_url, filename);
      console.log("pdfdownload", _url);
@@ -337,9 +344,22 @@ const Pip = ({data,price,avail}) => {
                         <Link
                           onClick={() =>
                             pdfDownloadDummy(
-                             "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
+                             "https://honeywell.bynder.com/m/75ae18c48552a7d0/original/public_pmt-hps-etcr300-4-scn-pdf.pdf",
                              "demo_builder"
                             )
+                          }
+                          className="download-link"
+                        >
+                          Download
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Private Builder.io Pdf</td>
+                      <td>
+                        <Link
+                          onClick={() =>
+                             authenticatedDownload()
                           }
                           className="download-link"
                         >

@@ -34,6 +34,30 @@ const generateApigeeToken = async () => {
   return data.access_token;
 };
 
+const generateBinderToken = async () => {
+  const Binder_AUTH_URL = '';
+  const CLIENT_ID = '';
+  const CLIENT_SECRET = '';
+  const response = await fetch(Binder_AUTH_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      'grant_type': 'client_credentials',
+      'client_id': CLIENT_ID,
+      'client_secret': CLIENT_SECRET
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to generate Apigee token: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.access_token;
+};
+
 exports.handler = async (event, context) => {
   const { path, queryStringParameters, httpMethod, headers, body } = event;
   const basePath = '/.netlify/functions/apis'; // Adjust this based on your setup
@@ -44,7 +68,7 @@ exports.handler = async (event, context) => {
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICIwNmNlYjIzMi0yZjBmLTQyYmItODg1Zi0zNzYxZmM0OTk4ZjUiLAogICJzdWIiIDogImFlMTEzYmNhLWMzNDEtNGI5Yy1hY2M2LTc1MGI2MmNhZjYxYSIsCiAgImlhdCIgOiAxNzIzMjE1MDQ2LAogICJleHAiIDogMTcyMzIxNjg0Ngp9.AQrTdu32AoXSOfq1h0cfJKzlBQVmKT4jcDdyqgaoHCYUDam8rWowbszNUr13MFrjmDcc2teDuHbihvLYS14ZV5IgaHMbAKaLOPCff1o8jiUTxcZIEuEbhcEmhAdg1TIkuyxbg6XnPqYHN1EKmLpJE4OoVQSTiXCTIo78tMKf6mgueT0uH0mFnHMGiE-dn3Jq6rKYM4PGSHeBLByJwUN7AanEtHjJNB6OopcEHwwIpbRNQ4IiruvU7gnb2WEYKJI31WOMtzVWjrV-dq-fScFSMKK8YqvHA3rDWTNcgLiBPz2_P536BOVCD1xX2_kLZAGb4gWaUkHqqghbFLTvUpd9LQ";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI0NjM5ZDg3Zi1lZDg1LTQ0YjgtODY2MS1lYjIyZTczZjdlNWIiLAogICJzdWIiIDogImUyMmJhYjM2LTM0MzMtNGU1NC05MWU4LTViMDFjZmY4MmU5MCIsCiAgImlhdCIgOiAxNzIzNDY2MDM5LAogICJleHAiIDogMTcyMzQ2NzgzOQp9.owlXfh8DSJNaZTzdcseoBTAJa0yq1FaGqkJUqZ2AEqomBlkzHfG1KGg4LWttIo3YyA3oxh90IHdYz6OLW61mzJ_jUsxh6rYEB1XbDpQa72VyLF-Z2x5-F-kDdTCheCRWBgExTR9w588Zx0GS8ccVpYuAu1WfmRjqJ5nPFNzhx8xCLgFxFVliL-sVU8MDzneLkkUoe3VK9cHRfhj5NAa2IHE0hHYM-iY7vqfrYOfLfU9rZ2EzEguVTUL3GU9RJv4yA3b_ob43OYhNmnhJkg0YK-IsDr8EsOn1SoJ6a-ZCs5WLXQPJmlfmweJJ31DyhMiSbF4MGDtPEa2RWa1uYt6mpA";
 
   if (apiPath.includes("/pif/")) {
     if (httpMethod === 'OPTIONS') {
@@ -124,7 +148,8 @@ exports.handler = async (event, context) => {
         };
       }
     }
-  } else if (apiPath.includes("/productDetails/")) {
+  } 
+  else if (apiPath.includes("/productDetails/")) {
     try {
       // Ensure apigee_token is defined
       const apigee_token = await generateApigeeToken();
@@ -166,7 +191,51 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
       };
     }
-  } else {
+  }
+  else if (apiPath.includes("")) {
+    try {
+      // Ensure binder_token is defined
+      const binder_token = await generateBinderToken();
+
+      // New API handling logic
+      const targetURL = ``;
+
+      console.log('Target URL:', targetURL, 'binder_token:', binder_token);
+
+      const response = await fetch(targetURL, {
+        method: httpMethod,
+        headers: {
+          'Authorization': "Bearer " + binder_token,
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(data)
+      };
+
+    } catch (error) {
+      console.error('Fetch error:', error);
+      return {
+        statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
+      };
+    }
+  }
+  else {
     return {
       statusCode: 404,
       headers: {

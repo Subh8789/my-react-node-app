@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Pdp = () => {
   const [activeTab, setActiveTab] = useState("Overview");
-
  
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
+ 
+  const userLoggedIn = localStorage.getItem("userLoggedIn");
 
   return (
     <div className="main-content">
@@ -64,11 +64,32 @@ const Pdp = () => {
                       alt="BEAMHK Heating Kit"
                       className="beamhk-image-1"
                     />
-                    <img src= "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes "className="beamhk-image-2" />
+                    <div className="beamhk-image">
+                      <div>                    
+                        <img src= "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes "className="beamhk-image-2" />
+</div>
+                      <div>
+                      <img src= "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes "className="beamhk-image-2" />
+
+                      </div>
+                      <div>
+                      <img src= "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes "className="beamhk-image-2" />
+
+                      </div>
+                      <div>
+                      <img src= "https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes "className="beamhk-image-2" />
+
+                      </div>
+                    
+                    </div>
+                    <div ><button className="savethispage">SAVE THIS PAGE AS PDF</button></div>
+
                   </div>
+
+                  
               
               </div>
-
+              
               <div className="product-overview-pdp">
                 <div className="button-section">
                     <button>CONTACT US</button>
@@ -122,7 +143,7 @@ const Pdp = () => {
                     <td>
                     Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected Beam Smoke Detectors
                     </td>
-                   <Link to={`/pdp/${"BEAMHKR"}`}><td>ORDER ONLINE</td></Link>
+                   <Link to={ userLoggedIn === "true" ? `/pdp/${"BEAMHKR"}` : ""}><td>ORDER ONLINE</td></Link>
                   </tr>
                   <tr>
                     <td>BEAMHK</td>
@@ -130,7 +151,7 @@ const Pdp = () => {
                     <td>
                     Heater kit for Beam detector
                     </td>
-                   <Link to={`/pdp/${"BEAMHK"}`}><td>ORDER ONLINE</td></Link>
+                   <Link to={ userLoggedIn === "true" ? `/pdp/${"BEAMHKR"}` : ""}><td>ORDER ONLINE</td></Link>
                   </tr>
               </table>
             </div>
