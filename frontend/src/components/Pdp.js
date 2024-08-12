@@ -151,7 +151,7 @@ const Pdp = () => {
                     <td>
                     Heater kit for Beam detector
                     </td>
-                   <Link to={ userLoggedIn === "true" ? `/pdp/${"BEAMHKR"}` : ""}><td>ORDER ONLINE</td></Link>
+                   <Link to={ userLoggedIn === "true" ? `/pdp/${"BEAMHK"}` : ""}><td>ORDER ONLINE</td></Link>
                   </tr>
               </table>
             </div>
