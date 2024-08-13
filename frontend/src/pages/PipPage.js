@@ -1,6 +1,6 @@
 import Pip from "../components/Pip";
 import  {getAvailability, getPriceDetail, getProductDetail} from '../utils/ApiList/axiosapi';
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import NotFound from "../components/NotFound";
 
 import usePdpApiCall from "../customHook/usePdpApiCall";
@@ -10,7 +10,7 @@ import Pdp from "../components/Pdp";
 
 const PipPage = () => {
 
-    const {product_no} = useParams()
+    const {product_no} = useParams();
 
     if(!product_no){
         return <NotFound error="roduct not found, check the path"/>

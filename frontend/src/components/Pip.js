@@ -10,7 +10,8 @@ import CaratLeft from "../utils/icons/caratright.svg";
 
 import { Link } from "react-router-dom";
 
-import useDownloader from "../customHook/useDownloader";
+
+import useBynderPdf from "../customHook/useBynderPdf";
 
 const Pip = ({data,price,avail}) => {
   
@@ -21,14 +22,6 @@ const Pip = ({data,price,avail}) => {
   if (!data) return null;
   if(!price) return null;
   if(!avail) return null;
-
-  
-
-  console.log("price from pdpcomponent", price);
-  
-  console.log("avail from pdpcomponent", avail); 
-  console.log("data from pdpcomponent", data);
-  console.log("price from pdpcomponent", price);
 
 
   const specifications = data?.pdpData?.classifications;
@@ -46,10 +39,18 @@ const Pip = ({data,price,avail}) => {
   const date = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.availableDate;
   const color = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.color;
 
-  const authenticatedDownload = ()=>{
+
+  const bynderPdf = useBynderPdf();
+  console.log("bynderpdf",bynderPdf?.bynderPdf?.s3_file);
+
+  const authenticatedDownload = (endpoint,name)=>{
     if(localStorage.getItem('userLoggedIn') === "true"){
       
-    } 
+      pdfDownloadDummy(endpoint,name);
+      
+    } else{
+    alert("user not logged in");
+    }
   }
 
   const pdfDownloadDummy = (_url, filename) => {
@@ -359,7 +360,7 @@ const Pip = ({data,price,avail}) => {
                       <td>
                         <Link
                           onClick={() =>
-                             authenticatedDownload()
+                             authenticatedDownload(bynderPdf?.bynderPdf?.s3_file, "private_builder_pdf")
                           }
                           className="download-link"
                         >

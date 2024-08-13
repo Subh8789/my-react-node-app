@@ -27,6 +27,8 @@ const getAvailability =
 baseurl +
   "/.netlify/functions/apis/productDetails/atp";
 
+  const getBynderPdf = baseurl + "/.netlify/functions/apis/download/?type=original";
+
 export {
   contactApi,
   detailsApi,
@@ -38,4 +40,5 @@ export {
   getProductDetail,
   getPriceDetail,
   getAvailability,
+  getBynderPdf
 };

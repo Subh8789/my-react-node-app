@@ -35,9 +35,9 @@ const generateApigeeToken = async () => {
 };
 
 const generateBinderToken = async () => {
-  const Binder_AUTH_URL = '';
-  const CLIENT_ID = '';
-  const CLIENT_SECRET = '';
+  const Binder_AUTH_URL = 'https://honeywell.bynder.com/v6/authentication/oauth2/token';
+  const CLIENT_ID = 'd6aca289-4ca3-47d0-a5ed-a3e1716b062d';
+  const CLIENT_SECRET = '0e07b2ae-0c90-44e9-9e94-69dd43c379a4';
   const response = await fetch(Binder_AUTH_URL, {
     method: 'POST',
     headers: {
@@ -68,7 +68,7 @@ exports.handler = async (event, context) => {
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI0NjM5ZDg3Zi1lZDg1LTQ0YjgtODY2MS1lYjIyZTczZjdlNWIiLAogICJzdWIiIDogImUyMmJhYjM2LTM0MzMtNGU1NC05MWU4LTViMDFjZmY4MmU5MCIsCiAgImlhdCIgOiAxNzIzNDY2MDM5LAogICJleHAiIDogMTcyMzQ2NzgzOQp9.owlXfh8DSJNaZTzdcseoBTAJa0yq1FaGqkJUqZ2AEqomBlkzHfG1KGg4LWttIo3YyA3oxh90IHdYz6OLW61mzJ_jUsxh6rYEB1XbDpQa72VyLF-Z2x5-F-kDdTCheCRWBgExTR9w588Zx0GS8ccVpYuAu1WfmRjqJ5nPFNzhx8xCLgFxFVliL-sVU8MDzneLkkUoe3VK9cHRfhj5NAa2IHE0hHYM-iY7vqfrYOfLfU9rZ2EzEguVTUL3GU9RJv4yA3b_ob43OYhNmnhJkg0YK-IsDr8EsOn1SoJ6a-ZCs5WLXQPJmlfmweJJ31DyhMiSbF4MGDtPEa2RWa1uYt6mpA";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICJkNzE3YjQzOS1hZWJhLTRmMzctODVkOS1hMzAyMzJkNDI4MzUiLAogICJzdWIiIDogIjc0MDY5ZTJlLTQzMmYtNGIzNS04MzQ4LWM0MzQ3OTljZDAwMiIsCiAgImlhdCIgOiAxNzIzNTQ1NTM0LAogICJleHAiIDogMTcyMzU0NzMzNAp9.FjmNSb_ZML-Qd7oEn5tLNpqUiFfMF1QQNKU7jTEWdgQ0qzKb9Azet6V_w6fI4fqg1_ro6GfXblP21pd-98TZIDFWb14Zn-Vg7FI_J-q9UYC2HRdy8cKZ6on5BEBwGAvFKz8BvTr4G_eX7g-Q2CIICcswpnSHlWRNUdR28r00XOyx-JWLgfCsN5h_D3JDpjKI9Kkifz48W8Qj_Siid356dHbnuZPHoOxP3qruRoGD3VxS4oz_8j2HTnEA7F0Y4sfWQgp_Q_w_DJ44zptRLX5NaMiY-tQlC1aFNJEHs3nIevo6yTO6mQurHtYs1Qvfv8GzLoP5KYqexJi0s3ARqR4JqQ";
 
   if (apiPath.includes("/pif/")) {
     if (httpMethod === 'OPTIONS') {
@@ -192,15 +192,15 @@ exports.handler = async (event, context) => {
       };
     }
   }
-  else if (apiPath.includes("")) {
+  else if (apiPath.includes("/download/")) {
     try {
       // Ensure binder_token is defined
       const binder_token = await generateBinderToken();
 
       // New API handling logic
-      const targetURL = ``;
+      const targetURL = `https://honeywell.bynder.com/api/v4/media/DA1CA705-D8BE-434F-9C08F7A226DA6950${apiPath}${queryString ? '?' + queryString : ''}`;
 
-      console.log('Target URL:', targetURL, 'binder_token:', binder_token);
+      console.log('Binder Target URL:', targetURL, 'binder_token:', binder_token);
 
       const response = await fetch(targetURL, {
         method: httpMethod,

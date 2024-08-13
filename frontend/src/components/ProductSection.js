@@ -3,8 +3,6 @@ import CaratDown from '../utils/icons/caratdown.svg';
 import CaratUp from '../utils/icons/caratup.svg';
 import '../utils/css/ProductSection.css';
 import  {Link} from 'react-router-dom';
-import usePdpApiCall from '../customHook/usePdpApiCall';
-import {getProductDetail,getPriceDetail,getAvailability} from '../utils/ApiList/axiosapi';
 
 const ProductSection = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -89,7 +87,7 @@ const ProductSection = () => {
             </div>
             <div className='part-item-description'>
               <p className='desc-1'>PART NUMBER</p>
-              <Link to={localStorage.getItem("userLoggedIn") === "true" ?(`/search/${product.partNumber}`) : ""} className='details-link'>   <p className='desc-2'>{product.partNumber}</p></Link>
+              <Link to={localStorage.getItem("userLoggedIn") === "true" ?(`/pip/${product.partNumber}`) : ""} className='details-link'>   <p className='desc-2'>{product.partNumber}</p></Link>
               <p className='desc-3'>{product.description}</p>
               <div className='details-button'>
                 {/* <Link to={"/search/"+product.id} className='details-link'>Product Details</Link> */}

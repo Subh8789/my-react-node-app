@@ -11,6 +11,7 @@ const Pdp = () => {
  
   const userLoggedIn = localStorage.getItem("userLoggedIn");
 
+
   return (
     <div className="main-content">
       <div className="product-title">
@@ -143,7 +144,8 @@ const Pdp = () => {
                     <td>
                     Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected Beam Smoke Detectors
                     </td>
-                   <Link to={ userLoggedIn === "true" ? `/pdp/${"BEAMHKR"}` : ""}><td>ORDER ONLINE</td></Link>
+                   <Link to={ userLoggedIn === "true" ? `/pip/${"BEAMHKR"}` : ""} ><td>ORDER ONLINE</td></Link> 
+                  
                   </tr>
                   <tr>
                     <td>BEAMHK</td>
@@ -151,7 +153,8 @@ const Pdp = () => {
                     <td>
                     Heater kit for Beam detector
                     </td>
-                   <Link to={ userLoggedIn === "true" ? `/pdp/${"BEAMHK"}` : ""}><td>ORDER ONLINE</td></Link>
+                     <Link to={ userLoggedIn === "true" ? `/pip/${"BEAMHKR"}` : ""} ><td>ORDER ONLINE</td></Link> 
+                  
                   </tr>
               </table>
             </div>
