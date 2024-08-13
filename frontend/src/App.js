@@ -9,8 +9,6 @@ import ProtectedRoute from './Route/ProtectedRoute.js';
 import UserContext from './utils/contextdata/userContext.js';
 import PipPage from './pages/PipPage.js';
 import PdpPage from './pages/PdpPage.js';
-import { useEffect } from 'react';
-import { getBynderPdf } from './utils/ApiList/axiosapi.js';
 
 function App() {
 
@@ -19,20 +17,6 @@ function App() {
 
 
 
-  useEffect(() => {
-
-    try {
-      fetch(getBynderPdf)
-      .then(response => response.json())
-      .then(data_result => console.log("bynderpdf",data_result))
-    }catch (error) {
-      console.error('Fetch error:', error);
-    }
-   
-  }, []);
-
-
-  
 
 
   const router = createBrowserRouter(
