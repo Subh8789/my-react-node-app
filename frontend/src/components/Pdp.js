@@ -94,7 +94,7 @@ const Pdp = () => {
               <div className="product-overview-pdp">
                 <div className="button-section">
                     <button>CONTACT US</button>
-                    <button disabled={userLoggedIn === "true" ? true : false} onClick={() => handleTabClick("SKU")}>BUY ONLINE</button>
+                    {userLoggedIn === "true" && <button  onClick={() => handleTabClick("SKU")}>BUY ONLINE</button>}
                     <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">Heating kits for use to prevent condensation with the BEAM1224 conventional beam smoke detectors. 
@@ -144,7 +144,7 @@ const Pdp = () => {
                     <td>
                     Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected Beam Smoke Detectors
                     </td>
-                   <Link to={ userLoggedIn === "true" ? `/pip/${"BEAMHKR"}` : ""} ><td>ORDER ONLINE</td></Link> 
+                   {userLoggedIn === "true" && <Link to={ userLoggedIn === "true" ? `/pip/${"BEAMHKR"}` : ""} ><td>ORDER ONLINE</td></Link>} 
                   
                   </tr>
                   <tr>
@@ -153,7 +153,7 @@ const Pdp = () => {
                     <td>
                     Heater kit for Beam detector
                     </td>
-                     <Link to={ userLoggedIn === "true" ? `/pip/${"BEAMHK"}` : ""} ><td>ORDER ONLINE</td></Link> 
+                 {userLoggedIn === "true" &&  <Link to={ userLoggedIn === "true" ? `/pip/${"BEAMHK"}` : ""} ><td>ORDER ONLINE</td></Link> }
                   
                   </tr>
               </table>
