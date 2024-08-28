@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CaratDown from '../utils/icons/caratdown.svg';
 import CaratUp from '../utils/icons/caratup.svg';
 import '../utils/css/ProductSection.css';
@@ -48,6 +48,9 @@ const ProductSection = () => {
     { id: 24, partNumber: "V-V123", description: "Enclosed Victory Relay: SPST: N.O. Relay: 24 Vac/dc: 120V AC Coil: 20A Amperage Rating: HOA Switch: Digital HOA Monitor" },
     { id: 25, partNumber: "GFV545", description: "HFO-1234yf (3000 ppm): N2 Balance: 103 L" }
   ]
+
+  
+
   
 
   return (

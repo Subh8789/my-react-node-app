@@ -94,7 +94,7 @@ const Pdp = () => {
               <div className="product-overview-pdp">
                 <div className="button-section">
                     <button>CONTACT US</button>
-                    <button  onClick={() => handleTabClick("SKU")}>BUY ONLINE</button>
+                    <button disabled={userLoggedIn === "true" ? true : false} onClick={() => handleTabClick("SKU")}>BUY ONLINE</button>
                     <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">Heating kits for use to prevent condensation with the BEAM1224 conventional beam smoke detectors. 

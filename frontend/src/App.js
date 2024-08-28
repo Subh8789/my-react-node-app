@@ -9,15 +9,17 @@ import ProtectedRoute from './Route/ProtectedRoute.js';
 import UserContext from './utils/contextdata/userContext.js';
 import PipPage from './pages/PipPage.js';
 import PdpPage from './pages/PdpPage.js';
+import { useEffect, useState } from 'react';
 
 function App() {
 
 
   const {detailData, contactData, error} = useApicall();
 
+  //const [dummyData,setDummyData ] = useState({});
 
-
-
+  
+  
 
   const router = createBrowserRouter(
     createRoutesFromElements(

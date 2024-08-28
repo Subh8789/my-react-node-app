@@ -40,6 +40,7 @@ const Pip = ({data,price,avail}) => {
   const color = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.color;
 
 
+  {/* 
   const bynderPdf = useBynderPdf();
   console.log("bynderpdf",bynderPdf?.bynderPdf?.s3_file);
 
@@ -53,6 +54,8 @@ const Pip = ({data,price,avail}) => {
     }
   }
 
+  */}
+  
   const pdfDownloadDummy = (_url, filename) => {
    // useDownloader(_url, filename);
     console.log("pdfdownload", _url);
@@ -339,6 +342,7 @@ const Pip = ({data,price,avail}) => {
                         </Link>
                       </td>
                     </tr>
+                    {/*
                     <tr>
                       <td>Dummy Builder.io Pdf</td>
                       <td>
@@ -368,6 +372,7 @@ const Pip = ({data,price,avail}) => {
                         </Link>
                       </td>
                     </tr>
+                    */}
                 </table>
               </div>
             )}
