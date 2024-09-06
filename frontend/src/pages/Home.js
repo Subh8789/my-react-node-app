@@ -7,10 +7,6 @@ import ImageBanner from "../components/Section-5";
 import useContentStackApi from "../customHook/useContenStackApi";
 import CardSection3 from "../components/CardSection3";
 
-import { builder } from "@builder.io/react";
-
-builder.init("129b06a063e849a4965f7afd112e1a46")
-
 
 export default function Home() {
   
@@ -23,7 +19,7 @@ export default function Home() {
   const [imageGrid, setImageGrid] = React.useState();
   const [imageBanner, setImageBanner] = React.useState();
 
- // const [landingPageData, setLandingPageData] = React.useState([]);
+
 
   const data = useContentStackApi(pageInfo, entrypoint);
 
