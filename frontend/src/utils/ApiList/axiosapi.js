@@ -1,4 +1,5 @@
 const baseurl = "";
+
 const contactApi =
   baseurl + "/.netlify/functions/apis/pif/api/account/v1/get-contact-details?appId=239";
 const detailsApi =
@@ -29,6 +30,9 @@ baseurl +
 
   const getBynderPdf = baseurl + "/.netlify/functions/apis/download/?type=original";
 
+  const richRelevance = baseurl + "/.netlify/functions/apis/richRelevance";
+
+  
 export {
   contactApi,
   detailsApi,
@@ -40,5 +44,6 @@ export {
   getProductDetail,
   getPriceDetail,
   getAvailability,
-  getBynderPdf
+  getBynderPdf,
+  richRelevance
 };

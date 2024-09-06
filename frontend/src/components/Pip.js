@@ -327,12 +327,28 @@ const Pip = ({data,price,avail}) => {
                     </tr>
                   ))}
                   <tr>
-                      <td>Dummy Cloudinary Pdf</td>
+                      <td>Cloudinary Public Asset</td>
                       <td>
                         <Link
                           onClick={() =>
                             pdfDownloadDummy(
-                             "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
+                             "https://asset.cloudinary.com/honeywell-poc/af99c6f3156e67d5864a991e8f07abba",
+                             "demo_cloudinary"
+                            )
+                          }
+                          className="download-link"
+                        >
+                          Download
+                        </Link>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Cloudinary Non-Public Asset</td>
+                      <td>
+                        <Link
+                          onClick={() =>
+                            pdfDownloadDummy(
+                             "https://res.cloudinary.com/honeywell-poc/image/upload/v1721397461/202-LS-014-2020.pdf",
                              "demo_cloudinary"
                             )
                           }

@@ -7,6 +7,10 @@ import ImageBanner from "../components/Section-5";
 import useContentStackApi from "../customHook/useContenStackApi";
 import CardSection3 from "../components/CardSection3";
 
+import { builder } from "@builder.io/react";
+
+builder.init("129b06a063e849a4965f7afd112e1a46")
+
 
 export default function Home() {
   
@@ -19,13 +23,15 @@ export default function Home() {
   const [imageGrid, setImageGrid] = React.useState();
   const [imageBanner, setImageBanner] = React.useState();
 
+ // const [landingPageData, setLandingPageData] = React.useState([]);
+
   const data = useContentStackApi(pageInfo, entrypoint);
 
-  console.log("contenapidatahook", data);
+  //console.log("contenapidatahook", data);
 
-  console.log("contenapidatahook", data[0]?.herobanner?.banner_image[0].url);
+  //console.log("contenapidatahook", data[0]?.herobanner?.banner_image[0].url);
 
-  console.log("imagegridgtext", data[2]?.imagegrid?.imagegrid_images);
+  //console.log("imagegridgtext", data[2]?.imagegrid?.imagegrid_images);
   useEffect(() => { 
     setBannerData(data[0]?.herobanner);
    setSection2Data(data[1]?.section);
@@ -33,7 +39,29 @@ export default function Home() {
    setImageBanner(data[3]?.imagebanner);
   },[data]);
 
-  
+  // Get the CMS data from Builder
+  /*
+  useEffect(() => {
+    async function fetchContent() {
+      const builderIOData = await builder.get("home-page-data-model", {
+        //userAttributes : { urlPath : "/"}
+        query: {
+         name : "Honeywell Landing Page Nex"
+        },
+        //options: { enrich: true }
+        // You can use options for queries, sorting, and targeting here
+        // https://github.com/BuilderIO/builder/blob/main/packages/core/docs/interfaces/GetContentOptions.md
+      });
+      setLandingPageData(builderIOData);
+    }
+    fetchContent();
+  }, []);
+
+  console.log("builderIOData new ", landingPageData);
+  console.log("builderIOData new Hero Banner Image ", landingPageData?.data?.heroBanner?.bannerImage?.secure_url);
+
+  */
+
   return (
     <>
       <HeroBanner bannerData={bannerData} ></HeroBanner>

@@ -191,11 +191,17 @@
   margin-top: -5px;
 }
 
-.desc-2{
+.desc-black{
   font-size: 22px;
-  /*font-family: HoneywellSans-Bold; */
+  color: rgb(0, 8, 12);
+  margin-top: -0.5px;
+  
+}
+.desc-blue{
+  font-size: 22px;
   color: rgb(0, 113, 179);
   margin-top: -0.5px;
+  
 }
 
 .details-button{
